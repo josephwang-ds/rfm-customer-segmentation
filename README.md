@@ -6,7 +6,7 @@ The goal is not just to cluster customers — it's to answer the question a CRM/
 
 ## Live Demo
 
-- Streamlit demo: https://josephwang-rfm-segmentation.streamlit.app/
+- Streamlit demo (bilingual English / 中文): https://josephwang-rfm-segmentation.streamlit.app/
 - GitHub repository: https://github.com/josephwang-ds/rfm-customer-segmentation
 
 ## Portfolio Highlights
