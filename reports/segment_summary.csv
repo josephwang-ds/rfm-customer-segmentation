@@ -1,0 +1,5 @@
+segment,customers,customer_pct,recency_median_days,frequency_median_orders,monetary_median_gbp,revenue_pct,recommended_strategy
+High-value loyal,720,16.6,8,10,3717.10,64.8,VIP access and retention; avoid blanket discounts
+Stable repeat,1174,27.1,54,4,1351.82,23.8,Cross-sell bundles and category recommendations
+Recent low-spend,856,19.7,18,2,459.06,5.1,Second-purchase nudges and onboarding offers
+Dormant low-value,1588,36.6,179,1,298.68,6.2,Reactivation holdout tests with tight cost controls

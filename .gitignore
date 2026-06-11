@@ -1,0 +1,16 @@
+.DS_Store
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Keep raw/source data local. The portfolio repo should be reproducible
+# without committing large database or CSV files.
+data/raw/
+*.db
+*.sqlite
+*.xlsx
+*.xls
+
+# Local render/export artifacts
+*.pdf
+*.png
