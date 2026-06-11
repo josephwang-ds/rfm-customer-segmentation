@@ -1,3 +1,10 @@
+"""DEPRECATED: superseded by rfm_segments.py + clv_model.py + churn_model.py.
+
+Kept for reference only. This was the original 1-year Online Retail / SQLite
+pipeline; the current project uses the 2-year Online Retail II dataset with
+a calibration/holdout split (see src/rfm_segments.py).
+"""
+
 """Build RFM customer segments from the local Online Retail SQLite database."""
 
 from __future__ import annotations

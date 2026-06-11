@@ -6,6 +6,7 @@ __pycache__/
 # Keep raw/source data local. The portfolio repo should be reproducible
 # without committing large database or CSV files.
 data/raw/
+data/processed/*.parquet
 *.db
 *.sqlite
 *.xlsx
@@ -14,3 +15,4 @@ data/raw/
 # Local render/export artifacts
 *.pdf
 *.png
+!reports/figures/*.png

@@ -1,0 +1,6 @@
+segment_name,customers,avg_clv_6m_gbp,actual_churn_rate,clv_at_risk_6m_gbp,intervention,cost_per_customer_gbp,assumed_retention_uplift_pp,required_n_per_arm,ab_test_feasible,campaign_cost_gbp,incremental_revenue_gbp,net_value_gbp,roi
+Loyal High-Value,920,905.33,0.204,196663.38,Personalized cross-sell/bundle email based on purchase history,2.0,5.0,921,False,1840.0,41644.96,39804.96,21.63
+Champions,477,4200.65,0.044,80340.27,"VIP early-access + loyalty perks (retain & deepen, not win back)",3.0,2.0,1262,False,1431.0,40074.2,38643.2,27.0
+At-Risk,1390,288.74,0.561,232030.32,Win-back campaign: 15% discount + personalized email,8.0,8.0,611,True,11120.0,32108.44,20988.44,1.89
+Recent Low-Spend,589,585.11,0.324,106145.63,3-email onboarding/nurture series to build repeat-purchase habit,3.0,6.0,904,False,1767.0,20677.78,18910.78,10.7
+Hibernating,1590,173.94,0.758,202141.88,Low-cost automated reactivation email (single send),1.0,4.0,1896,False,1590.0,11062.72,9472.72,5.96

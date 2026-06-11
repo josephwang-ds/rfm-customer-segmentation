@@ -1,0 +1,8 @@
+metric,value
+holdout_days,184.0
+pred_purchase_corr,0.8518
+pred_purchase_mae,1.0469
+pred_clv_corr,0.8352
+total_predicted_clv_6m_gbp,3859162.29
+total_actual_holdout_revenue_gbp,4625733.09
+portfolio_error_pct,-0.1657

@@ -1,0 +1,5 @@
+model,auc
+logistic_regression,0.8139
+random_forest,0.8101
+gradient_boosting,0.8084
+btyd_baseline,0.4404

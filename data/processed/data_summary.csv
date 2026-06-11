@@ -1,0 +1,9 @@
+metric,value
+raw_rows,1067371
+clean_rows,805549
+customers,5878
+invoices,36969
+revenue_gbp,17743429.18
+date_min,2009-12-01
+date_max,2011-12-09
+countries,41

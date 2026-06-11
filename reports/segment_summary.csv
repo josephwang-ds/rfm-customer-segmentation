@@ -1,5 +1,6 @@
-segment,customers,customer_pct,recency_median_days,frequency_median_orders,monetary_median_gbp,revenue_pct,recommended_strategy
-High-value loyal,720,16.6,8,10,3717.10,64.8,VIP access and retention; avoid blanket discounts
-Stable repeat,1174,27.1,54,4,1351.82,23.8,Cross-sell bundles and category recommendations
-Recent low-spend,856,19.7,18,2,459.06,5.1,Second-purchase nudges and onboarding offers
-Dormant low-value,1588,36.6,179,1,298.68,6.2,Reactivation holdout tests with tight cost controls
+segment,customers,customer_pct,revenue_pct,recency_median_days,frequency_median_orders,monetary_median_gbp,avg_predicted_clv_6m_gbp,clv_at_risk_6m_gbp,recommended_intervention,simulated_roi
+Champions,477,9.6,55.8,15,17,6847.27,4200.65,80340.27,VIP early-access + loyalty perks (retain & deepen, not win back),27.0
+Loyal High-Value,920,18.5,24.5,66,7,2547.30,905.33,196663.38,Personalized cross-sell/bundle email based on purchase history,21.63
+At-Risk,1390,28.0,12.3,207,3,864.49,288.74,232030.32,Win-back campaign: 15% discount + personalized email,1.89
+Recent Low-Spend,589,11.9,4.2,18,3,717.41,585.11,106145.63,3-email onboarding/nurture series to build repeat-purchase habit,10.70
+Hibernating,1590,32.0,3.2,255,1,233.09,173.94,202141.88,Low-cost automated reactivation email (single send),5.96

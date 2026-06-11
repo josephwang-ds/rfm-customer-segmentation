@@ -1,4 +1,10 @@
 pandas
 numpy
+pyarrow
 scikit-learn
+lifetimes
+statsmodels
+matplotlib
+seaborn
+streamlit
 python-docx
