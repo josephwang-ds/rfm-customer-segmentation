@@ -79,14 +79,12 @@ DATA = load_data()
 MISSING = [k for k in ["cluster_summary", "rfm_customers", "clv_predictions",
                         "churn_predictions", "segment_strategy"] if k not in DATA]
 
-st.title(L("RFM Segmentation, CLV Prediction & Churn Risk",
-           "RFM 客户分群、CLV 预测与流失风险"))
+st.title(L("RFM, CLV & Churn Risk for CRM Budget Decisions",
+           "RFM、CLV 与流失预警：CRM 预算该投给谁"))
 st.caption(
     L(
-        "UCI Online Retail II (2009-12 to 2011-12) -> RFM segments -> 6-month CLV "
-        "(BG/NBD + Gamma-Gamma) -> churn risk model -> segment strategy & ROI simulation",
-        "UCI Online Retail II 数据集（2009-12 至 2011-12）-> RFM 分群 -> 6 个月 CLV 预测"
-        "（BG/NBD + Gamma-Gamma）-> 流失风险模型 -> 分群策略与 ROI 模拟",
+        "A simple CRM decision chain: segment customers, estimate future value, predict churn risk, then choose the right action.",
+        "一条简单的 CRM 决策链：客户分群、预测未来价值、判断流失风险，再决定该维护、召回还是低成本触达。",
     )
 )
 
@@ -119,49 +117,38 @@ tab_overview, tab_segments, tab_clv, tab_churn, tab_strategy, tab_method = st.ta
 # ------------------------------------------------------------------
 with tab_overview:
     with st.expander(
-        L("Why this project? — the motivation", "为什么做这个项目？— 项目动机"), expanded=True
+        L("The story to tell in an interview", "面试时只讲这条主线"), expanded=True
     ):
         st.markdown(
             L(
                 """
-**The problem I wanted to solve.** Most CRM/growth teams spend their campaign budget
-evenly across all customers because they can't answer three questions: *who is worth
-protecting, who is worth winning back, and is the spend even worth it?* Meanwhile, most
-portfolio RFM projects stop at clustering — pretty segments, no decisions.
+**Business problem.** A CRM team has limited campaign budget. The question is not
+"can we cluster customers?" The question is: **who is worth protecting, who is worth
+winning back, and who should only receive low-cost automation?**
 
-**What this project does differently:**
+**Simple workflow.** I use transaction history to build a decision chain:
+RFM segmentation → 6-month CLV → churn risk → CRM action.
 
-1. **From segments to money.** Each segment gets a 6-month CLV prediction (BG/NBD +
-   Gamma-Gamma), so "Champions" isn't a label — it's £X of future revenue at stake.
-2. **From description to prediction.** A churn model (AUC 0.81) identifies who is about
-   to go quiet — and I show *why* the textbook BTYD "P(alive)" heuristic fails (AUC 0.44)
-   on one-time buyers.
-3. **From prediction to decision.** Segment × CLV × churn risk → a cost-adjusted ROI
-   simulation (£17.7K spend → £127.8K simulated net value) with per-segment A/B test
-   sample-size requirements, so the plan is actually testable.
-4. **Honest validation.** An 18-month calibration / 6-month holdout split — every claim
-   is checked against what customers *actually did*, not in-sample fit.
+**Main model story.** The textbook BTYD `1 - P(alive)` churn shortcut failed on the
+holdout, with **0.44 AUC**, because it misread one-time buyers as alive. Those customers
+actually churned at about **74%**. A supervised churn classifier fixed the ranking and
+reached **0.81 AUC**.
 
-It uses only transaction history — the one dataset every retailer already has.
+**How to frame the ROI.** The 7.2x ROI is a simulation, not proven lift. The correct
+next step is an A/B test or holdout campaign.
 """,
                 """
-**我想解决的问题。** 大多数 CRM/增长团队把营销预算平均撒向所有客户，因为他们回答不了
-三个问题：*谁值得保护？谁值得挽回？这笔钱花得值不值？* 而大多数作品集里的 RFM 项目
-止步于聚类——分群很漂亮，却不产生决策。
+**业务问题。** CRM 团队预算有限，问题不是“能不能把客户分群”，而是：
+**谁值得保护、谁值得召回、谁只适合低成本自动触达？**
 
-**这个项目的不同之处：**
+**简单流程。** 我只用交易流水搭了一条决策链：
+RFM 分群 → 6 个月 CLV → 流失风险 → CRM 动作。
 
-1. **从分群到金额。** 每个分群都有 6 个月 CLV 预测（BG/NBD + Gamma-Gamma），
-   "冠军客户"不只是标签，而是一笔可量化的未来收入。
-2. **从描述到预测。** 流失模型（AUC 0.81）识别谁即将沉默——并且我展示了教科书式
-   BTYD "P(alive)" 启发式为什么在一次性购买客户上失效（AUC 仅 0.44）。
-3. **从预测到决策。** 分群 × CLV × 流失风险 → 成本调整后的 ROI 模拟
-   （£1.77 万投入 → 模拟净值 £12.78 万），并给出每个分群的 A/B 测试样本量要求，
-   让方案真正可验证。
-4. **诚实的验证。** 18 个月校准期 / 6 个月留出期——所有结论都用客户*实际行为*检验，
-   而不是样本内拟合。
+**核心模型故事。** 教科书里的 BTYD `1 - P(alive)` 流失启发式在留出期失败，
+AUC 只有 **0.44**，因为它把一次性购买客户误判为还 alive；但这类客户实际流失率约
+**74%**。我换成监督式流失模型后，AUC 提升到 **0.81**。
 
-整个项目只用交易流水数据——这是每个零售商都已经拥有的数据。
+**ROI 怎么说。** 7.2x ROI 是模拟，不是实测收益。真正上线要用 A/B test 或 holdout 验证。
 """,
             )
         )
@@ -199,17 +186,8 @@ It uses only transaction history — the one dataset every retailer already has.
 
     st.markdown(
         L(
-            """
-**The story in one line:** segment customers by RFM, predict what each segment is worth
-over the next 6 months (CLV), predict who's about to go quiet (churn risk), then size a
-campaign budget against the CLV that's actually at risk — and check whether each
-segment is even big enough to run a valid A/B test.
-""",
-            """
-**一句话讲清这个项目：** 用 RFM 给客户分群，预测每个分群未来 6 个月的价值（CLV），
-预测谁即将流失（流失风险），再把营销预算对准真正"处于风险中的 CLV"——
-并检验每个分群的样本量是否足以支撑一个有效的 A/B 测试。
-""",
+            "**One-line takeaway:** this is a customer-value story with one model-validation twist: BTYD works for CLV, but its `P(alive)` shortcut failed for churn.",
+            "**一句话 takeaway：** 这是一个客户价值决策项目，最有故事性的点是：BG/NBD 可用于 CLV，但 `P(alive)` 直接做流失判断会失败。",
         )
     )
 
