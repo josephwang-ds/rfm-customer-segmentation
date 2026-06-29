@@ -45,6 +45,12 @@ The holdout design matters because it mirrors real CRM work: score customers tod
 
 ### 1. RFM Finds the Customer Structure
 
+How segmentation is done:
+
+- Compute **Recency, Frequency, and Monetary** features from the 18-month calibration window only.
+- Apply `log1p` and standard scaling so high-spend outliers do not dominate distance.
+- Run **K-means with k=5**, then label the clusters by business meaning rather than algorithmic IDs.
+
 Five customer groups:
 
 - **Champions**: recent, frequent, high-value buyers
@@ -125,6 +131,7 @@ Short version:
 What not to over-explain:
 
 - K-means tuning details
+- Silhouette score / clustering diagnostics unless asked
 - Gamma-Gamma formulas
 - Every segment's ROI table
 - The full dashboard architecture
