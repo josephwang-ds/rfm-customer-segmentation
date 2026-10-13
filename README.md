@@ -114,38 +114,7 @@ The demo turns segment + CLV + churn risk into simple actions:
 | Recent Low-Spend | Onboarding / second-purchase nurture |
 | Hibernating | Low-cost automated reactivation |
 
-The ROI section is intentionally framed as a **simulation**, not proven business impact:
-
-- Simulated campaign spend: **£17.7K**
-- Simulated net value: **£127.8K**
-- Simulated blended ROI: **7.2x**
-
-In production, these assumptions should be replaced by measured uplift from A/B tests.
-
-## How To Talk About This Demo
-
-Short version:
-
-> I built a CRM decision workflow on 805K retail transactions: RFM segmentation, 6-month CLV, churn prediction, and ROI simulation. The key story is model validation: the textbook BTYD `1 - P(alive)` churn heuristic scored only 0.44 AUC because it misread one-time buyers, so I replaced it with a supervised churn classifier and reached 0.81 AUC.
-
-What not to over-explain:
-
-- K-means tuning details
-- Silhouette score / clustering diagnostics unless asked
-- Gamma-Gamma formulas
-- Every segment's ROI table
-- The full dashboard architecture
-
-Keep the story simple:
-
-```text
-Budget allocation problem
--> RFM / CLV / churn decision chain
--> BTYD churn heuristic fails
--> diagnose one-time buyers
--> supervised churn model fixes it
--> CRM actions + A/B test next step
-```
+Each segment also gets a power analysis: how many customers a test needs at the assumed effect size, and whether the segment is large enough. Only At-Risk is large enough to test as designed. No ROI is estimated — intervention effects are untested, so any revenue figure would just restate the assumptions.
 
 ## Reproduce
 
@@ -165,6 +134,6 @@ streamlit run app/streamlit_app.py
 ## Limits
 
 - Public dataset, not company data.
-- ROI is simulated, not measured campaign lift.
+- Intervention effects are assumptions; they need a real A/B test before any ROI claim.
 - Churn uses transaction behavior only; a production model should add campaign exposure, product category, channel, and engagement features.
 - BTYD is not “bad”; it is useful for CLV here, but `1 - P(alive)` is not reliable as a churn classifier for this business label.
